@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %} About {% endblock %}
+
+{% block content %}
+    <p>
+        <img src="{{ url_for('static', filename='Diane-Ouethy.jpeg') }}" width="150" height="150" alt="my love">
+        <br/>Welcome to my site! I'm actually a trainee lawyer at the Advocacy of Cameroon.<br/>
+        I'm married and I have four children. I like blogging about some of the articles contained in the Cameroonian
+        Law.
+        <br/>
+        If you're new to the site, here are some of my more popular blog entries.<br/>
+    </p>
+    <br/>
+
+    {% for entry in object_list %}
+        {% if search %}
+            {% set entry = entry.entry %}
+        {% endif %}
+            <h3>
+                <a href="{% if entry.published %}{{ url_for('detail', slug=entry.slug) }}{% else %}{{ url_for('edit',
+                slug=entry.slug) }}{% endif %}">
+                    {{ entry.title }}
+                </a>
+            </h3>
+        <p>
+             Created {{ entry.timestamp.strftime('%m/%d/%Y at %H:%I%p') }}
+        </p>
+    {% else %}
+        <p>
+            No entries have been created yet.
+        </p>
+    {% endfor %}
+    {% include "includes/pagination.html" %}
+{% endblock content %}
+
+
+

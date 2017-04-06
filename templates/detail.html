@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ entry.title }}{% endblock %}
+
+{% block content_title %}{{ entry.title }}{% endblock%}
+
+{% block extra_header %}
+    {% if session.logged_in %}
+        <li><a href="{{ url_for('edit', slug=entry.slug) }}">/edit entry</a></li>
+    {% endif %}
+    <li><a href="{{ url_for('create') }}">/create entry</a></li>
+    <!--<li><a href="{{ url_for('join', slug=entry.slug) }}">/join</a><li>-->
+{% endblock %}
+
+{% block content %}
+    <p>
+        Created {{ entry.timestamp.strftime('%m/%d/%Y at %H:%I%p') }}
+    </p>
+    {{ entry.html_content }}
+
+{% endblock %}
