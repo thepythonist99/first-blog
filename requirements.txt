@@ -79,7 +79,7 @@ pyxdg==0.25
 PyYAML==3.11
 pyzmq==16.0.2
 qtconsole==4.2.1
-reportlab==3.3.0
+reportlab==3.5.55
 requests==2.13.0
 roman==2.0.0
 sessioninstaller==0.0.0
